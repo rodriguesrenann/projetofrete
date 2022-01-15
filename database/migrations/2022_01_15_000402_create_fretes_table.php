@@ -18,7 +18,7 @@ class CreateFretesTable extends Migration
             $table->string('produto');
             $table->string('endereco_entrega');
             $table->unsignedBigInteger('id_loja_vendedora');
-            $table->foreign('loja_id')->references('id')->on('lojas')->onDelete('cascade');
+            $table->foreign('id_loja_vendedora')->references('id')->on('lojas')->onDelete('cascade');
             $table->date('dia_frete');
             $table->dateTime('horario_frete')->nullable();
             $table->string('status_frete');
