@@ -15,3 +15,4 @@
     @yield('content')
 </body>
 </html>
+@yield('script')
