@@ -15,3 +15,4 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [HomeController::class, 'index']);
+Route::get('/adicionar-frete', [FreteController::class, 'index'])->name('add.frete');

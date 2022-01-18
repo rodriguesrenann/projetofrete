@@ -53,6 +53,15 @@
 @endsection
 @section('script')
     <script>
+        window.onload = function() {
+            document.querySelectorAll('#checkbox').forEach((item) => {
+                if (item.checked) {
+                    item.closest('tr').classList.add('table-success')
+                } else {
+                    item.closest('tr').classList.add('table-danger')
+                }
+            })
+        };
         document.querySelectorAll('#checkbox').forEach((item) => {
             item.addEventListener('click', click);
         })
@@ -60,9 +69,11 @@
         function click(e) {
             let tr = this.closest('tr');
             if (this.checked) {
+                tr.classList.remove('table-danger')
                 tr.classList.add('table-success')
             } else {
                 tr.classList.remove('table-success')
+                tr.classList.add('table-danger')
             }
         }
     </script>
