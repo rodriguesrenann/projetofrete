@@ -20,12 +20,12 @@ class CreateFretesTable extends Migration
             $table->unsignedBigInteger('id_loja_vendedora');
             $table->foreign('id_loja_vendedora')->references('id')->on('lojas')->onDelete('cascade');
             $table->date('dia_frete');
-            $table->dateTime('horario_frete')->nullable();
+            $table->string('horario_frete')->nullable();
             $table->string('status_frete');
-            $table->boolean('levar_maquina');
+            $table->boolean('levar_maquina')->default(0);
             $table->string('valor_frete')->nullable();
             $table->tinyText('observacao')->nullable();
-            $table->string('estoque_saida');
+            $table->string('estoque_saida')->default('Canoas');
         });
     }
 

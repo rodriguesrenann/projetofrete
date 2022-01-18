@@ -2,80 +2,85 @@
 @section('title', 'Teste')
 
 @section('content')
-    <div class="jumbotron">
-        <div class="container text-center">
-            <h2 class="text-left">Controle de fretes.</h2>
-            <button type="button" class="btn btn-dark text-center mb-2">Adicionar frete</button>
-        </div>
-    </div>
-    <table class="table">
-        <thead>
-            <tr>
-                <th scope="col">Produto</th>
-                <th scope="col">Endereço</th>
-                <th scope="col">Loja vendedora</th>
-                <th scope="col">Dia do frete</th>
-                <th scope="col">Horário do frete</th>
-                <th scope="col">Status do frete</th>
-                <th scope="col">Levar máquina</th>
-                <th scope="col">Valor a cobrar</th>
-                <th scope="col">Obs</th>
-                <th scope="col">Estoque saída</th>
-                <th scope="col">Concluído</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($fretes as $frete)
-                <tr>
 
-                    <td id="td">{{ $frete->produto }}</td>
-                    <td id="td">{{ $frete->endereco_entrega }}</td>
-                    <td id="td">{{ $frete->loja->nome_loja }}</td>
-                    <td id="td">{{ date('d/m/Y', strtotime($frete->dia_frete)) }}</td>
-                    <td id="td">{{ $frete->horario_frete }}</td>
-                    <td id="td">{{ $frete->status_frete }}</td>
-                    <td id="td">{{ $frete->levar_maquina == 0 ? 'Não' : 'Sim' }}</td>
-                    <td id="td">{{ $frete->valor_frete }}</td>
-                    <td id="td">{{ $frete->obs }}</td>
-                    <td id="td">{{ $frete->estoque_saida }}</td>
-                    <td>
-                        <div class="btn-group-toggle" data-toggle="buttons">
-                            <label class="btn btn-secondary active">
-                                <input type="checkbox" id="checkbox" {{ $frete->done ? 'checked' : '' }}
-                                    autocomplete="off">
-                            </label>
-                        </div>
-                    </td>
-                </tr>
-            @endforeach
-        </tbody>
-    </table>
+@section('title_page')
+    Controle de fretes
+@endsection
+
+@section('button')
+    <a href="{{ route('add.frete') }}">
+        <button type="button" class="btn btn-dark text-center mb-2">Adicionar frete</button>
+    </a>
+@endsection
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Produto</th>
+            <th scope="col">Endereço</th>
+            <th scope="col">Loja vendedora</th>
+            <th scope="col">Dia do frete</th>
+            <th scope="col">Horário do frete</th>
+            <th scope="col">Status do frete</th>
+            <th scope="col">Levar máquina</th>
+            <th scope="col">Valor a cobrar</th>
+            <th scope="col">Obs</th>
+            <th scope="col">Estoque saída</th>
+            <th scope="col">Concluído</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach ($fretes as $frete)
+            <tr>
+
+                <td id="td">{{ $frete->produto }}</td>
+                <td id="td">{{ $frete->endereco_entrega }}</td>
+                <td id="td">{{ $frete->loja->nome_loja }}</td>
+                <td id="td">{{ date('d/m/Y', strtotime($frete->dia_frete)) }}</td>
+                <td id="td">{{ $frete->horario_frete }}</td>
+                <td id="td">{{ $frete->status_frete }}</td>
+                <td id="td">{{ $frete->levar_maquina == 0 ? 'Não' : 'Sim' }}</td>
+                <td id="td">{{ $frete->valor_frete }}</td>
+                <td id="td">{{ $frete->observacao }}</td>
+                <td id="td">{{ $frete->estoque_saida }}</td>
+                <td>
+                    <div class="btn-group-toggle" data-toggle="buttons">
+                        <label class="btn ">
+                            <input type="checkbox" id="checkbox" {{ $frete->done ? 'checked' : '' }}
+                                autocomplete="off">
+                        </label>
+                    </div>
+                </td>
+            </tr>
+        @endforeach
+    </tbody>
+</table>
 @endsection
 @section('script')
-    <script>
-        window.onload = function() {
-            document.querySelectorAll('#checkbox').forEach((item) => {
-                if (item.checked) {
-                    item.closest('tr').classList.add('table-success')
-                } else {
-                    item.closest('tr').classList.add('table-danger')
-                }
-            })
-        };
+<script>
+    window.onload = function() {
         document.querySelectorAll('#checkbox').forEach((item) => {
-            item.addEventListener('click', click);
-        })
-
-        function click(e) {
-            let tr = this.closest('tr');
-            if (this.checked) {
-                tr.classList.remove('table-danger')
-                tr.classList.add('table-success')
+            if (item.checked) {
+                item.closest('tr').classList.add('table-success')
             } else {
-                tr.classList.remove('table-success')
-                tr.classList.add('table-danger')
+                item.closest('tr').classList.add('table-danger')
             }
+        })
+    };
+    document.querySelectorAll('#checkbox').forEach((item) => {
+        item.addEventListener('click', click);
+    })
+
+    function click(e) {
+        let tr = this.closest('tr');
+        if (this.checked) {
+            tr.classList.remove('table-danger')
+            tr.classList.add('table-success')
+        } else {
+            tr.classList.remove('table-success')
+            tr.classList.add('table-danger')
         }
-    </script>
+    }
+</script>
 
 @endsection
