@@ -2,17 +2,15 @@
 @section('title', 'Teste')
 
 @section('content')
-    <div class="jumbotron jumbotron-fluid">
-        <div class="container">
-            <h1 class="display-4">Controle de fretes</h1>
-            <p class="lead">Página para controle de fretes da loja Rei dos Móveis.
-            </p>
+    <div class="jumbotron">
+        <div class="container text-center">
+            <h2 class="text-left">Controle de fretes.</h2>
+            <button type="button" class="btn btn-dark text-center mb-2">Adicionar frete</button>
         </div>
     </div>
-    <table class="table table-dark">
+    <table class="table">
         <thead>
             <tr>
-
                 <th scope="col">Produto</th>
                 <th scope="col">Endereço</th>
                 <th scope="col">Loja vendedora</th>
@@ -30,20 +28,21 @@
             @foreach ($fretes as $frete)
                 <tr>
 
-                    <td>{{ $frete->produto }}</td>
-                    <td id="address">{{ $frete->endereco_entrega }}</td>
-                    <td>{{ $frete->loja->nome_loja }}</td>
-                    <td class="date">{{ date('d/m/Y', strtotime($frete->dia_frete)) }}</td>
-                    <td>{{ $frete->horario_frete }}</td>
-                    <td>{{ $frete->status_frete }}</td>
-                    <td>{{ $frete->levar_maquina == 0 ? 'Não' : 'Sim' }}</td>
-                    <td>{{ $frete->valor_frete }}</td>
-                    <td>{{ $frete->obs }}</td>
-                    <td>{{ $frete->estoque_saida }}</td>
+                    <td id="td">{{ $frete->produto }}</td>
+                    <td id="td">{{ $frete->endereco_entrega }}</td>
+                    <td id="td">{{ $frete->loja->nome_loja }}</td>
+                    <td id="td">{{ date('d/m/Y', strtotime($frete->dia_frete)) }}</td>
+                    <td id="td">{{ $frete->horario_frete }}</td>
+                    <td id="td">{{ $frete->status_frete }}</td>
+                    <td id="td">{{ $frete->levar_maquina == 0 ? 'Não' : 'Sim' }}</td>
+                    <td id="td">{{ $frete->valor_frete }}</td>
+                    <td id="td">{{ $frete->obs }}</td>
+                    <td id="td">{{ $frete->estoque_saida }}</td>
                     <td>
                         <div class="btn-group-toggle" data-toggle="buttons">
                             <label class="btn btn-secondary active">
-                                <input type="checkbox" {{$frete->done ? 'checked' : ''}} autocomplete="off"> Concluído
+                                <input type="checkbox" id="checkbox" {{ $frete->done ? 'checked' : '' }}
+                                    autocomplete="off">
                             </label>
                         </div>
                     </td>
@@ -54,8 +53,18 @@
 @endsection
 @section('script')
     <script>
-        let address = document.querySelector('#address')
-        console.log(address);
+        document.querySelectorAll('#checkbox').forEach((item) => {
+            item.addEventListener('click', click);
+        })
+
+        function click(e) {
+            let tr = this.closest('tr');
+            if (this.checked) {
+                tr.classList.add('table-success')
+            } else {
+                tr.classList.remove('table-success')
+            }
+        }
     </script>
 
 @endsection
