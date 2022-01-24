@@ -46,8 +46,8 @@
                 <td>
                     <div class="btn-group-toggle" data-toggle="buttons">
                         <label class="btn ">
-                            <input type="checkbox" id="checkbox" {{ $frete->done ? 'checked' : '' }}
-                                autocomplete="off">
+                            <input type="checkbox" id="checkbox" data-id="{{ $frete->id }}"
+                                {{ $frete->done ? 'checked' : '' }} autocomplete="off">
                         </label>
                     </div>
                 </td>
@@ -68,10 +68,12 @@
         })
     };
     document.querySelectorAll('#checkbox').forEach((item) => {
+
         item.addEventListener('click', click);
     })
 
     function click(e) {
+        let id = this.getAttribute('data-id')
         let tr = this.closest('tr');
         if (this.checked) {
             tr.classList.remove('table-danger')
@@ -80,6 +82,20 @@
             tr.classList.remove('table-success')
             tr.classList.add('table-danger')
         }
+
+        setDone(id);
+    }
+
+    function setDone(id) {
+        axios({
+            method: 'post',
+            url: 'api/setDone',
+            data: {
+                id : id
+            }
+        }).then((response)=> {
+            console.log(response)
+        })
     }
 </script>
 

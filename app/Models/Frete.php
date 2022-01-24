@@ -13,7 +13,7 @@ class Frete extends Model
 
     protected $fillable = ['produto', 'endereco_entrega', 
             'id_loja_vendedora', 'dia_frete', 'horario_frete', 'status_frete',
-            'levar_maquina','valor_frete', 'observacao', 'estoque_saida'];
+            'levar_maquina','valor_frete', 'observacao', 'estoque_saida', 'done'];
 
     public function loja()
     {
