@@ -16,10 +16,16 @@ class HomeController extends Controller
         $this->repository = $repository;
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $fretes = $this->repository->getAllFretes();
+        $done = $request->input('done');
+        
+        if ($done === 'todos') {
+            $fretes = $this->repository->getAllFretes();
+            return view('home.home', compact('fretes', 'done'));
+        }
 
-        return view('home.home', compact('fretes'));  
+        $fretes = $this->repository->getFretesWhere($done);
+        return view('home.home', compact('fretes', 'done'));
     }
 }

@@ -9,23 +9,11 @@
 
 @section('button')
     <a href="{{ route('add.frete') }}">
-        <button type="button" class="btn btn-primary mb-2">Adicionar frete</button>
-    </a>
-    <a href="{{ route('add.frete') }}">
-        <button type="button" class="btn btn-danger mb-2">Assistencias</button>
+        <button type="button" class="btn btn-dark text-center mb-2">Adicionar frete</button>
     </a>
 @endsection
 
-<table class="table table-bordered">
-    <div class="d-flex justify-content-end mb-2">
-        <form method="GET">
-            <select onChange="this.form.submit()" name="done" id="">
-                <option value="todos" {{$done=='todos'?"selected='selected'":""}}>Todos</option>
-                <option value="1" {{$done==1?"selected='selected'":""}}>Concluídos</option>
-                <option value="0" {{$done==0?"selected='selected'":""}}>Não concluídos</option>
-            </select>
-        </form>
-    </div>
+<table class="table">
     <thead>
         <tr>
             <th scope="col">Produto</th>
@@ -57,7 +45,7 @@
                 <td id="td">{{ $frete->estoque_saida }}</td>
                 <td>
                     <div class="btn-group-toggle" data-toggle="buttons">
-                        <label class="btn">
+                        <label class="btn ">
                             <input type="checkbox" id="checkbox" data-id="{{ $frete->id }}"
                                 {{ $frete->done ? 'checked' : '' }} autocomplete="off">
                         </label>
@@ -103,9 +91,9 @@
             method: 'post',
             url: 'api/setDone',
             data: {
-                id: id
+                id : id
             }
-        }).then((response) => {
+        }).then((response)=> {
             console.log(response)
         })
     }

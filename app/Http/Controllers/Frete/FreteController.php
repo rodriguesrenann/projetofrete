@@ -24,7 +24,12 @@ class FreteController extends Controller
     public function create(FreteRequest $request)
     {
         $this->repository->createNewFrete($request);
-
         return redirect()->route('home');
+    }
+
+    public function getUndoneFretes()
+    {
+        $fretes = $this->repository->getUndoneFretes();
+        return view('frete.fretes-nao-concluidos', compact('fretes'));
     }
 }

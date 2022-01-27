@@ -20,6 +20,17 @@ class FreteRepository
         return $this->repository->all();
     }
 
+    public function getUndoneFretes(): Collection
+    {
+        return $this->repository->where('done', '!=', true)->get();
+    }
+
+    public function getFretesWhere($status)
+    {
+       
+        return $this->repository->where('done', $status)->get();
+    }
+
     public function createNewFrete(FormRequest $request)
     {
         return $this->repository->create([
