@@ -18,14 +18,13 @@ class HomeController extends Controller
     public function index(Request $request)
     {
         $done = $request->input('done');
+        
 
-        if ($done == 1 || $done == 0) {
+        $fretes = $this->repository->getTodayFretes();
+
+        if ($done !== 'hoje') {
             $fretes = $this->repository->getFretesWhere($request->input('done'));
-        } else {
-            $fretes = $this->repository->getTodayFretes();
         }
-
-
 
         return view('home.home', [
             'fretes' => $fretes,
