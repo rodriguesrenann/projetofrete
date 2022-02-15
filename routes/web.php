@@ -18,4 +18,4 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/adicionar-frete', [FreteController::class, 'index'])->name('add.frete');
 Route::post('/adicionar-frete', [FreteController::class, 'create'])->name('add.frete.action');
-Route::get('/fretes-nao-concluidos', [FreteController::class, 'getUndoneFretes'])->name('fretes.nao.concluidos');
+Route::post('/fretes-filter', [FreteController::class, 'getFretes'])->name('fretes.filter');

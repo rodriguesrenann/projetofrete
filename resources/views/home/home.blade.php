@@ -19,10 +19,11 @@
 <table class="table table-bordered">
     <div class="d-flex justify-content-end mb-2">
         <form method="GET">
-            <select onChange="this.form.submit()" name="done" id="">
-                <option value="todos" {{$done=='todos'?"selected='selected'":""}}>Todos</option>
-                <option value="1" {{$done==1?"selected='selected'":""}}>Concluídos</option>
-                <option value="0" {{$done==0?"selected='selected'":""}}>Não concluídos</option>
+            <select onChange="this.form.submit()" name="done" id="options">
+                <option value="" selected disabled hidden>Filtro</option>
+                <option value="hoje" {{$done==='hoje'?"selected='selected'":""}}>Hoje</option>
+                <option value="0" {{$done==='0'?"selected='selected'":""}}>Não concluídos</option>
+                <option value="1" {{$done==='1'?"selected='selected'":""}}>Concluídos</option>
             </select>
         </form>
     </div>

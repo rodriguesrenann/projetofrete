@@ -27,6 +27,11 @@ class FreteController extends Controller
         return redirect()->route('home');
     }
 
+    public function getFretes(Request $request)
+    {
+        dd($request);
+    }
+
     public function getUndoneFretes()
     {
         $fretes = $this->repository->getUndoneFretes();

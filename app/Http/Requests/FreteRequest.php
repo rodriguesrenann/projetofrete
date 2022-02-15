@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\Pago;
 use Illuminate\Foundation\Http\FormRequest;
 
 class FreteRequest extends FormRequest
@@ -28,7 +29,7 @@ class FreteRequest extends FormRequest
             'address' => 'required',
             'date' => 'required',
             'time' => 'nullable',
-            'status' => 'required',
+            'status' => [new Pago],
             'value' => 'nullable',
             'obs' => 'nullable',
             'out' => 'required',

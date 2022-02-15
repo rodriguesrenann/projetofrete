@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Home;
 
 use App\Http\Controllers\Controller;
-use App\Models\Frete;
 use App\Repository\FreteRepository;
 use Illuminate\Http\Request;
 
@@ -19,13 +18,18 @@ class HomeController extends Controller
     public function index(Request $request)
     {
         $done = $request->input('done');
-        
-        if ($done === 'todos') {
-            $fretes = $this->repository->getAllFretes();
-            return view('home.home', compact('fretes', 'done'));
+
+        if ($done == 1 || $done == 0) {
+            $fretes = $this->repository->getFretesWhere($request->input('done'));
+        } else {
+            $fretes = $this->repository->getTodayFretes();
         }
 
-        $fretes = $this->repository->getFretesWhere($done);
-        return view('home.home', compact('fretes', 'done'));
+
+
+        return view('home.home', [
+            'fretes' => $fretes,
+            'done' => $request->input('done')
+        ]);
     }
 }
