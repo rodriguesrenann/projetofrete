@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -11,12 +12,14 @@ class Frete extends Model
 
     public $timestamps = false;
 
-    protected $fillable = ['produto', 'endereco_entrega', 
-            'id_loja_vendedora', 'dia_frete', 'horario_frete', 'status_frete',
-            'levar_maquina','valor_frete', 'observacao', 'estoque_saida', 'done'];
+    protected $fillable = [
+        'produto', 'endereco_entrega',
+        'id_loja_vendedora', 'nome_numero', 'dia_frete', 'horario_frete', 'status_frete',
+        'levar_maquina', 'valor_frete', 'observacao', 'estoque_saida', 'done'
+    ];
 
     public function loja()
     {
-       return $this->belongsTo(Loja::class, 'id_loja_vendedora', 'id');
+        return $this->belongsTo(Loja::class, 'id_loja_vendedora', 'id');
     }
 }

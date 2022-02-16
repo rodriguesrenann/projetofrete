@@ -32,9 +32,5 @@ class FreteController extends Controller
         dd($request);
     }
 
-    public function getUndoneFretes()
-    {
-        $fretes = $this->repository->getUndoneFretes();
-        return view('frete.fretes-nao-concluidos', compact('fretes'));
-    }
+    
 }

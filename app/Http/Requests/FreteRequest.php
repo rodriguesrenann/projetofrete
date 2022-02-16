@@ -25,16 +25,17 @@ class FreteRequest extends FormRequest
     public function rules()
     {
         return [
-            'product' => 'required',
-            'address' => 'required',
-            'date' => 'required',
-            'time' => 'nullable',
-            'status' => [new Pago],
-            'value' => 'nullable',
-            'obs' => 'nullable',
-            'out' => 'required',
-            'store' => 'required',
-            'pay_machine' => 'nullable'
+            'produto' => 'required',
+            'endereco_entrega' => 'required',
+            'dia_frete' => 'required',
+            'horario_frete' => 'nullable',
+            'nome_numero'=> 'required',
+            'status_frete' => [new Pago],
+            'valor_frete' => 'nullable',
+            'observacao' => 'nullable',
+            'estoque_saida' => 'required',
+            'id_loja_vendedora' => 'required',
+            'levar_maquina' => 'nullable'
         ];
     }
 }

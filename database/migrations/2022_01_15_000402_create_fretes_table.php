@@ -27,6 +27,7 @@ class CreateFretesTable extends Migration
             $table->bigInteger('valor_frete')->default(0);
             $table->tinyText('observacao')->nullable();
             $table->string('estoque_saida')->default('Canoas');
+            $table->boolean('concluido')->default(0);
         });
     }
 

@@ -52,7 +52,7 @@ class Pago implements Rule, DataAwareRule
         $response = true;
 
         if ($value === 'Cobrar') {
-            if (!$this->data['value']) {
+            if (!$this->data['valor_frete']) {
                 $response = false;
             }
         }
