@@ -63,6 +63,16 @@
                     placeholder="Canoas" value="{{ old('out') }}">
             </div>
         </div>
+        <div class="form-row">
+            <div class="form-group col-md-12">
+                <label for="inputState"></label>
+                <select id="inputState" name="store" class="form-control">
+                    <option selected>Loja Vendedora</option>
+                    <option value="1">Canoas</option>
+                    <option value="2">Sapucaia</option>
+                </select>
+            </div>
+        </div>
 
         <div class="form-row">
             <div class="form-group col-md-12">
@@ -89,7 +99,7 @@
 @section('script')
 <script src="https://unpkg.com/imask"></script>
 <script>
-   IMask(
+    IMask(
         document.getElementById("date"), {
             mask: '00/00/0000'
         }

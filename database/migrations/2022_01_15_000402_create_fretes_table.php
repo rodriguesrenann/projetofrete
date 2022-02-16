@@ -19,11 +19,12 @@ class CreateFretesTable extends Migration
             $table->string('endereco_entrega');
             $table->unsignedBigInteger('id_loja_vendedora');
             $table->foreign('id_loja_vendedora')->references('id')->on('lojas')->onDelete('cascade');
+            $table->string('nome_number');
             $table->date('dia_frete');
             $table->string('horario_frete')->nullable();
             $table->string('status_frete');
             $table->boolean('levar_maquina')->default(0);
-            $table->string('valor_frete')->nullable();
+            $table->bigInteger('valor_frete')->default(0);
             $table->tinyText('observacao')->nullable();
             $table->string('estoque_saida')->default('Canoas');
         });
