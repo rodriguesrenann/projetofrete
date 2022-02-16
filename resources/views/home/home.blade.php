@@ -32,7 +32,7 @@
             <tr>
                 <th scope="col">Produto</th>
                 <th scope="col">Endereço</th>
-                <th scope="col">Loja vendedora</th>
+                <th scope="col">Nome/Número</th>
                 <th scope="col">Dia do frete</th>
                 <th scope="col">Horário do frete</th>
                 <th scope="col">Status do frete</th>
