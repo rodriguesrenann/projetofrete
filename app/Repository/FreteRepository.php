@@ -10,7 +10,7 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class FreteRepository
 {
-    private $repository;
+    private Frete $repository;
 
     public function __construct(Frete $repository)
     {
