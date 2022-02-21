@@ -22,7 +22,7 @@ class MakeAssistenciasTable extends Migration
             $table->string('telefone_cliente')->nullable();
             $table->string('produto_assistencia');
             $table->date('data_assistencia');
-            $table->boolean('done')->default(0);
+            $table->boolean('concluido')->default(0);
         });
     }
 

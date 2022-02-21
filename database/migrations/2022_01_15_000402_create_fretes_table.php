@@ -17,6 +17,7 @@ class CreateFretesTable extends Migration
             $table->id();
             $table->string('produto');
             $table->string('endereco_entrega');
+            $table->string('bairro');
             $table->unsignedBigInteger('id_loja_vendedora');
             $table->foreign('id_loja_vendedora')->references('id')->on('lojas')->onDelete('cascade');
             $table->string('nome_number');

@@ -36,6 +36,16 @@ class FreteRepository
         return $this->repository->where('dia_frete', $dia)->where('concluido', 0)->get();
     }
 
+    public function countAllFretes(): int
+    {
+        return $this->repository->where('concluido', 1)->count();
+    }
+
+    public function getMostVisitedneighborhood(): Collection
+    {
+        return $this->repository->select('bairro')->selectRaw('COUNT(*) AS count')->groupBy('bairro')->orderByDesc('count')->get();
+    }
+
     public function createNewFrete(FormRequest $request)
     {
         return $this->repository->create([
